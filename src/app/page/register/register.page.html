@@ -1,0 +1,47 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Register</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+    <ion-list>
+        <ion-item>
+            <ion-input type="text" placeholder="YourName" [(ngModel)]="mname"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Gender</ion-label>
+            <ion-select placeholder="Select One" [(ngModel)]="gender">
+                <ion-select-option value="f">Female</ion-select-option>
+                <ion-select-option value="m">Male</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Day of Birthday</ion-label>
+            <ion-datetime displayFormat="YYYY/MM/DD" min="1980-03-14" max="2015-12-09" [(ngModel)]="brithday"></ion-datetime>
+        </ion-item>
+
+        <ion-item>
+            <ion-input type="text" placeholder="Email" [(ngModel)]="email"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-input type="text " placeholder="Paswword" [(ngModel)]="password "></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-input type="text " placeholder="ConfrimPaswword" [(ngModel)]="confrim_password "></ion-input>
+        </ion-item>
+        <ion-item>
+
+            <ion-button expand="full" class="ion-padding" (click)="tryRegister()" size="default" [disabled]="disableButton">Register</ion-button>
+        </ion-item>
+
+
+    </ion-list>
+
+</ion-content>
