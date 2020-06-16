@@ -30,15 +30,15 @@
             <ion-input type="text" placeholder="Email" [(ngModel)]="email"></ion-input>
         </ion-item>
         <ion-item>
-            <ion-input type="text " placeholder="Paswword" [(ngModel)]="password "></ion-input>
+            <ion-input type="password" placeholder="Paswword" [(ngModel)]="password "></ion-input>
         </ion-item>
 
         <ion-item>
-            <ion-input type="text " placeholder="ConfrimPaswword" [(ngModel)]="confrim_password "></ion-input>
+            <ion-input type="password" placeholder="ConfrimPaswword" [(ngModel)]="confrim_password "></ion-input>
         </ion-item>
         <ion-item>
 
-            <ion-button expand="full" class="ion-padding" (click)="tryRegister()" size="default" [disabled]="disableButton">Register</ion-button>
+            <ion-button expand="block" (click)="tryRegister()" size="default" [disabled]="disableButton">Register</ion-button>
         </ion-item>
 
 

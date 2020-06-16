@@ -8,6 +8,9 @@ import { Router,ActivatedRoute} from '@angular/router';
 })
 export class LoginPage implements OnInit {
 
+  eml:string;
+  pwd:string;
+
   constructor(
     private router:Router
   ) { 
@@ -20,6 +23,9 @@ export class LoginPage implements OnInit {
 
   openRegister(){
     this.router.navigate(['/register']);
+  }
+  tryLogin(){
+
   }
 
 }
