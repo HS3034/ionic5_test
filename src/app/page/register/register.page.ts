@@ -64,6 +64,34 @@ export class RegisterPage implements OnInit {
   //   console.log('Loading dismissed!');
   // }
 
+  async presentAlert(msg){
+
+    const alert = await this.alertCtrl.create({
+      cssClass: 'my-custom-class',
+      header: msg,
+      backdropDismiss:false,
+      buttons: [
+        {
+          text: 'Close',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+            //action
+          }
+        }, {
+          text: "Try Agent",
+          handler: () => {
+            console.log('Confirm Login Agent');
+          this.tryRegister();
+
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
   async   tryRegister() {
     if (this.mname == "") {
       this.prentsentToast("Your Name is required");
@@ -88,14 +116,17 @@ export class RegisterPage implements OnInit {
       
       return new Promise(resolve => {
         let body = {
-          aksi: 'Proces Register',
-          your_name: this.mname,
+          name: this.mname,
           gender: this.gender,
-          date_of_birth: this.brithday,
+          password: this.password,
           email: this.email,
-          password: this.password
+          brithday : this.brithday,
+          stamtime: 'CURRENT_TIMESTAMP'
+
         }
-        this.accprovider.postData(body, 'prosec_api.php').subscribe((res: any) => {
+
+        console.log(body);
+        this.accprovider.postData(body, 'members').subscribe((res: any) => {
           if (res.succes == true) {
             loading.dismiss();
             this.disableButton = false;
@@ -105,10 +136,16 @@ export class RegisterPage implements OnInit {
           } else {
             loading.dismiss();
             this.disableButton = false;
-            this.prentsentToast =(res.msg);
+            this.prentsentToast(res.msg);
             this.router.navigate(['/login']);
           }
-        });
+        },(err)=>{
+          loading.dismiss();
+          this.disableButton = false;
+          this.presentAlert("Not Connect");
+
+        }
+        );
       });
     }
 
