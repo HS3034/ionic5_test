@@ -1,7 +1,7 @@
 
 import { Injectable } from '@angular/core';
  import {HttpClient,HttpHeaders,HttpErrorResponse} from '@angular/common/http';
-  import { Http, Headers, RequestOptions } from '@angular/http';
+// import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/timeout';
 
@@ -36,16 +36,16 @@ export class AccessProviders{
         
     postData(body,file){
 
-      const headers = new Headers();
-      headers.append('Access-Control-Allow-Origin', '*');
-      headers.append('Access-Control-Allow-Headers', 'Content-Type');
-      headers.append('Access-Control-Allow-Methods', 'GET, POST');
-      headers.append('Content-Type', 'application/json');
+      // const headers = new Headers();
+      // headers.append('Access-Control-Allow-Origin', '*');
+      // headers.append('Access-Control-Allow-Headers', 'Content-Type');
+      // headers.append('Access-Control-Allow-Methods', 'GET, POST');
+      // headers.append('Content-Type', 'application/json');
 
-       // let headers = new HttpHeaders({'Content-Type':'application/json'});
-        // const options = { headers: headers }
+       let headers = new HttpHeaders({'Content-Type':'application/json'});
+        const options = { headers: headers }
 
-        const options = new RequestOptions({ headers });
+        // const options = new RequestOptions({ headers });
         return this.http.post(this.server+ file,JSON.stringify(body), options)
         .timeout(5900)
         .map(res =>res)
