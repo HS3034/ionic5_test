@@ -7,6 +7,8 @@ import { AccessProviders } from '../../providers/access-providers';
 import { HAMMER_LOADER } from '@angular/platform-browser';
 
 
+
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
@@ -14,13 +16,14 @@ import { HAMMER_LOADER } from '@angular/platform-browser';
 })
 export class RegisterPage implements OnInit {
 
+  dataFromService:any;
 
-  mname = "";
-  gender = "";
-  brithday = "";
-  email = "";
-  password = "";
-  confrim_password = "";
+  mname :string;
+  gender :string;
+  brithday :string;
+  email :string;
+  password :string;
+  confrim_password :string;
 
   disableButton;
 
@@ -49,20 +52,6 @@ export class RegisterPage implements OnInit {
     });
     toast.present();
   }
-
-
-
-  // async presentLoading() {
-  //   const loading = await this.loadingCtrl.create({
-  //     cssClass: 'my-custom-class',
-  //     message: 'Please wait...',
-  //     duration: 2000
-  //   });
-  //   await loading.present();
-
-  //   const { role, data } = await loading.onDidDismiss();
-  //   console.log('Loading dismissed!');
-  // }
 
   async presentAlert(msg){
 
@@ -115,18 +104,22 @@ export class RegisterPage implements OnInit {
 
       
       return new Promise(resolve => {
-        let body = {
-          name: this.mname,
-          gender: this.gender,
-          password: this.password,
-          email: this.email,
-          brithday : this.brithday,
-          stamtime: 'CURRENT_TIMESTAMP'
+        var body = {
+          // name: this.mname,
+          // gender: this.gender,
+          // password: this.password,
+          // email: this.email,
+          // brithday : this.brithday,
+          // stamtime: 'CURRENT_TIMESTAMP'
+
+          email:this.email,
+          password:this.password
 
         }
 
-        console.log(body);
-        this.accprovider.postData(body, 'members').subscribe((res: any) => {
+   
+        
+        this.accprovider.postData(body).subscribe((res: any) => {
           if (res.succes == true) {
             loading.dismiss();
             this.disableButton = false;
@@ -148,6 +141,10 @@ export class RegisterPage implements OnInit {
         );
       });
     }
+
+  }
+
+  sendingPost(){
 
   }
 

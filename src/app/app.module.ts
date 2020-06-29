@@ -9,6 +9,10 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { IonicStorageModule } from '@ionic/storage';
 import { HttpClientModule } from '@angular/common/http';
 
+import {IonicRestService} from './ionic-rest.service';
+
+
+
 
 
 
@@ -29,7 +33,7 @@ import { AccessProviders } from './providers/access-providers';
     StatusBar,
     SplashScreen,
     AccessProviders,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },IonicRestService
   ],
   bootstrap: [AppComponent]
 })
